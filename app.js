@@ -27,7 +27,7 @@ const connection = mysql.createConnection({
     //database: 'mini_project'
     host: 'sql.freedb.tech',
     user: 'freedb_daroot',
-    password: '&bE&7n3&TfEaHRu',
+    password: 'qF?3xXuBVn5X4Bw',
     database: 'freedb_mini_project'
 });
 connection.connect((err) => {

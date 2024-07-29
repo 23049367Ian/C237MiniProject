@@ -1,8 +1,3 @@
-DROP DATABASE IF EXISTS mini_project; 
-CREATE DATABASE mini_project;
-
-USE mini_project;
-
 DROP TABLE IF EXISTS dogs;
 DROP TABLE IF EXISTS filterTags;
 DROP TABLE IF EXISTS dogHasTags;

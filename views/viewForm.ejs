@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Adoption Site</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body style="background-color:grey">
+    <%- include ('partials/navbar.ejs') %>
+    <h2 class="card-title text-center mb-4">Request Form</h2>
+    <% if(form.length>0){%>
+        <h3 class="text-center"><%= form[0].dogName %></h3>
+        <% for(n=0;n<form.length;n++){%>
+            <div class="container mt-5" style="background-color:white">
+                <div class="card">
+                    <div class="card-body">  
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <p><%=form[n].personName%></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <p><%=form[n].email%></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <p><%=form[n].phoneNumber%></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="age" class="form-label">Age</label>
+                                    <p><%=form[n].age%></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <p><%=form[n].address%></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description</label>
+                                    <p><%=form[n].sDescription%></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Date Submitted</label>
+                                    <p><%=form[n].daDate.toLocaleDateString('en-SG')%></p>
+                                </div>
+                                <div class="mb-3">
+                                    <a href="/deleteForm/<%= form[n].formID %>" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <%}%>
+    <%}else{%>
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2>No Requests</h2>
+                </div>
+            </div>
+        </div>
+    <%}%>
+</body>
+</html>

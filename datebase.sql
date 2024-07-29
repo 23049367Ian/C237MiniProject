@@ -1,0 +1,54 @@
+DROP DATABASE IF EXISTS mini_project; 
+CREATE DATABASE mini_project;
+
+USE mini_project;
+
+DROP TABLE IF EXISTS dogs;
+DROP TABLE IF EXISTS filterTags;
+DROP TABLE IF EXISTS dogHasTags;
+DROP TABLE IF EXISTS formsTable;
+DROP TABLE IF EXISTS adminUser;
+DROP TABLE IF EXISTS dogHasForms;
+
+CREATE TABLE dogs (
+    dogID INT AUTO_INCREMENT PRIMARY KEY,
+    dogName VARCHAR(45) NOT NULL,
+    dogEDOB DATE NOT NULL,
+    dogGender VARCHAR(10) NOT NULL,
+    dogPersonality VARCHAR(1000) NOT NULL,
+    isHDBApproved BOOLEAN NOT NULL,
+    dogImage VARCHAR(1000) NOT NULL
+);
+
+CREATE TABLE filterTags(
+	tagID INT AUTO_INCREMENT PRIMARY KEY,
+    tagName VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE dogHasTags(
+	dogID INT,
+    tagID INT,
+    PRIMARY KEY (dogID, tagID),
+    FOREIGN KEY (dogID) REFERENCES dogs(dogID),
+    FOREIGN KEY (tagID) REFERENCES filterTags(tagID)
+);
+
+CREATE TABLE formsTable(
+	formID INT AUTO_INCREMENT PRIMARY KEY,
+    personName VARCHAR(45) NOT NULL,
+    email VARCHAR(60) NOT NULL,
+    phoneNumber INT(8) NOT NULL,
+    age INT(3) NOT NULL,
+    address VARCHAR(1000) NOT NULL,
+    sDescription VARCHAR(1000) NOT NULL,
+    daDate DATE NOT NULL,
+    dogID INT NOT NULL,
+    FOREIGN KEY (dogID) REFERENCES dogs(dogID)
+);
+
+CREATE TABLE adminUser(
+	adminID INT AUTO_INCREMENT PRIMARY KEY,
+	adminEmail VARCHAR(50) NOT NULL,
+    adminPassword VARCHAR(20) NOT NULL
+);
+

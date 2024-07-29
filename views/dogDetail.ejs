@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Dog Adoption Site</title>
+    <style>
+        .dog-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            padding: 50px;
+            position: relative;
+        }
+        .dog-card img {
+            height: 300px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .dog-card p {
+            margin: 5px 0;
+        }
+        .dog-card .actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .dog-card .actions a {
+            margin-left: 10px;
+            color: #333;
+            font-size:x-large;
+        }
+    </style>
+</head>
+<body>
+  <%- include ('partials/publicNav.ejs') %>
+  <div class="container">
+    <br>
+    <div class="text-center"><h2>Dog Details</h2></div>
+    <br>
+    <div class="actions">
+      <a href="/" class="btn"><i class="fa fa-chevron-left"></i>Back</a>
+    </div>
+    <% if (dog[0]) { %>
+      <div class="dog-card">
+        <div class="text-left">
+            <img src="/images/<%=dog[0].dogImage%>" alt="<%= dog[0].dogName %>">
+        </div>
+        <div>
+          <p><b>Name:</b><br> <%= dog[0].dogName %></p>
+        <p><b>DOB:</b><br> <%= dog[0].dogEDOB.toLocaleDateString('en-SG') %></p>
+        <p><b>Gender:</b><br> <%= dog[0].dogGender %></p>
+        <p><b>Personality:</b><br> <%= dog[0].dogPersonality %></p>
+        <p><b>HDB Approved:</b> 
+          <% if (dog[0].isHDBApproved === 1) { %>
+            Yes
+          <% } else { %>
+            No
+          <% } %>
+        </p>
+        <p><b>Traits:</b><br>
+          <% if (trait === 1) { for (i = 0; i < dog.length; i++) { %>  
+            <%= dog[i].tagName %> 
+          <% } } else { %>
+            No Known Traits
+          <% } %>
+        </p>
+        <p>If you are keen to share your home and love with <%= dog[0].dogName%>, please <a href="/adoptForm/<%=dog[0].dogID%>">register your interest here.</a></p>
+        </div>    
+      </div>
+    <% } else { %>
+      <p>No dog found.</p>
+    <% } %>
+  </div>
+</body>
+</html>
